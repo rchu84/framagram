@@ -24,7 +24,6 @@ gem 'jbuilder', '~> 2.5'
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-gem 'pry-rails'
 gem 'jquery-rails'
 gem 'figaro'
 gem 'aws-sdk-s3'
@@ -52,6 +51,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'binding_of_caller'
   gem 'better_errors'
+  gem 'annotate'
+  gem 'pry-rails'
+  gem 'byebug'
 end
 
 group :test do
