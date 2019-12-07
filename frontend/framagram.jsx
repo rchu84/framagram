@@ -4,16 +4,17 @@ import ReactDOM from "react-dom";
 import configureStore from './store/store';
 import Root from './components/root';
 
-import { login, logout, signup } from './actions/session_action';
+import { login, logout, signup } from './actions/session_actions';
+import { fetchPosts } from './actions/post_actions';
 
 import { parseJwt } from './util/util';
 
 document.addEventListener("DOMContentLoaded", () => {
 
   let store;
-  let currentUser = parseJwt(localStorage.token);
-  if (currentUser) {
-    delete currentUser.exp;
+  window.currentUser = parseJwt(localStorage.token);
+  if (window.currentUser) {
+    delete window.currentUser.exp;
     const preloadedState = {
       entities: {
         users: { [currentUser.id]: currentUser }
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       session: { id: currentUser.id }
     }
     store = configureStore(preloadedState);
+    delete window.currentUser;
   } else {
     store = configureStore();
   }
@@ -33,6 +35,8 @@ document.addEventListener("DOMContentLoaded", () => {
   window.login = login;
   window.logout = logout;
   window.signup = signup;
+
+  window.fetchPosts = fetchPosts;
   // -------------
 
   const root = document.getElementById("root");

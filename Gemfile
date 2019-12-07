@@ -29,6 +29,7 @@ gem 'figaro'
 gem 'aws-sdk-s3'
 gem 'devise'
 gem 'jwt'
+gem 'active_storage_validations'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

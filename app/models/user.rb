@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   validates :username, presence: true, uniqueness: true
 
+  has_many :posts, dependent: :delete_all,
+    foreign_key: :author_id
+
   def generate_jwt
     JWT.encode({  id: id,
                   email: email,
