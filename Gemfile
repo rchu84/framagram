@@ -30,6 +30,7 @@ gem 'aws-sdk-s3'
 gem 'devise'
 gem 'jwt'
 gem 'active_storage_validations'
+gem 'bootstrap', '~> 4.4.1'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
