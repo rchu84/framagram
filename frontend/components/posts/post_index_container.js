@@ -5,7 +5,8 @@ import { selectAllPosts } from '../../reducers/selectors';
 import { fetchPosts } from '../../actions/post_actions';
 
 const mapStateToProps = state => ({
-  posts: selectAllPosts(state)
+  posts: selectAllPosts(state),
+  users: state.entities.users
 });
 
 const mapDispatchToProps = dispatch => ({
