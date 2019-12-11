@@ -5,17 +5,23 @@ import Carousel from 'react-bootstrap/Carousel';
 import * as timeago from 'timeago.js';
 import Button from 'react-bootstrap/Button';
 import Nav from 'react-bootstrap/Nav';
+import { Modal } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+
 
 class PostIndexItem extends React.Component {
   render() {
     const { id, caption, author_id, photoUrls, created_at } = this.props.post;
     const { username } = this.props.author;
+
     return (
       <div className="post">
-        {/* <div className="post-index-item-poster">
-        </div> */}
         <div className="post-head">
           <Link to={`/${username}`} className="name">{username}</Link>
+          <div className="more-options">
+            <Button variant="light"><FontAwesomeIcon icon="ellipsis-h" /></Button>
+          </div>
         </div>
         <Carousel interval="" wrap="false">
           {photoUrls.map((photoUrl, idx) =>
