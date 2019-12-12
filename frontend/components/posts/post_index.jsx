@@ -10,7 +10,16 @@ class PostIndex extends React.Component{
   render() {
     return (
       <div className="posts-wrapper">
-        {this.props.posts.map(post => <PostIndexItem post={post} author={this.props.users[post.author_id]} key={post.id} />)}
+        {this.props.posts.map(post => 
+          <PostIndexItem post={post}
+            currentUserLiked={post.postLikes.find(el => el.user_id === this.props.currentUserId)}
+            currentUserId={this.props.currentUserId}
+            author={this.props.users[post.author_id]} 
+            key={post.id}
+            createPostLike={this.props.createPostLike}
+            removePostLike={this.props.removePostLike}
+            fetchPostLikes={this.props.fetchPostLikes} />)
+        }
       </div>
     );
   }

@@ -79,11 +79,15 @@ body {
   border-top: 1px solid #eeefef;
 }
 
+.post-likes {
+  padding: 0 24px;
+  font-weight: 500;
+}
+
 .caption {
-  padding: 12px 24px;
+  padding: 6px 24px;
   font-size: 15px;
   line-height: 18px;
-
 }
 
 .timestamp {
@@ -108,10 +112,16 @@ body {
 }
 
 .img-previews {
-  width: 100%;
+  position: relative;
 }
 
 .img-previews > img {
   width: 100%;
-  margin: 10px;
+  margin: 10px 0;
+}
+
+.img-previews-close {
+  position: absolute;
+  top: 16px;
+  right: 8px;
 }

@@ -55,3 +55,31 @@ export const deletePost = postId => (
     }
   })
 );
+
+export const getPostLikes = postId => (
+  $.ajax({
+    method: 'GET',
+    url: `api/posts/${postId}/post_likes`
+  })
+);
+
+export const postPostLike = postLike => (
+  $.ajax({
+    method: 'POST',
+    url: 'api/post_likes',
+    data: { post_like: postLike },
+    beforeSend: function (xhr) {   //Include the bearer token in header
+      xhr.setRequestHeader("Authorization", 'Bearer ' + localStorage.token);
+    }
+  })
+);
+
+export const deletePostLike = postLikeId => (
+  $.ajax({
+    method: 'DELETE',
+    url: `api/post_likes/${postLikeId}`,
+    beforeSend: function (xhr) {   //Include the bearer token in header
+      xhr.setRequestHeader("Authorization", 'Bearer ' + localStorage.token);
+    }
+  })
+);

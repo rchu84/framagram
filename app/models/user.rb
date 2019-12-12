@@ -9,6 +9,12 @@ class User < ApplicationRecord
   has_many :posts, dependent: :delete_all,
     foreign_key: :author_id
 
+  has_many :comments, dependent: :destroy
+  has_many :commented_posts, through: :comments, source: :post
+
+  has_many :post_likes, dependent: :destroy
+  has_many :liked_posts, through: :post_likes, source: :post
+
   has_many :follower_relationships, foreign_key: :following_id, class_name: :UserFollow
   has_many :followers, through: :follower_relationships, source: :follower
 

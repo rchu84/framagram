@@ -1,0 +1,1 @@
+json.partial! 'api/post_likes/post_like', post_like: @post_like

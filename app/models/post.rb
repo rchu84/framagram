@@ -6,6 +6,12 @@ class Post < ApplicationRecord
     class_name: :User,
     foreign_key: :author_id
 
+  has_many :post_likes, dependent: :destroy
+  has_many :likers, through: :post_likes, source: :user
+
+  has_many :comments, dependent: :destroy
+  has_many :commenters, through: :comments, source: :user
+
   has_many_attached :photos
 
   validates :photos, attached: true,

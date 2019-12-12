@@ -2,14 +2,11 @@ class Api::PostsController < ApplicationController
   skip_before_action :authenticate_user, only: [:show]
 
   def index
-    @posts = Post.includes(:author).with_attached_photos.where(author_id: current_user.id)
+    @posts = Post.includes(:author, :post_likes).with_attached_photos.where(author_id: current_user.id)
   end
 
   def show
-    @post = Post.includes(:author).with_attached_photos.find(params[:id])
-  end
-
-  def destroy
+    @post = Post.includes(:author, :post_likes).with_attached_photos.find(params[:id])
   end
 
   def create
@@ -24,6 +21,7 @@ class Api::PostsController < ApplicationController
 
   def update
     @post = Post.with_attached_photos.find(params[:id])
+    @post.photos.purge
     if @post.update(post_params)
       render :show
     else

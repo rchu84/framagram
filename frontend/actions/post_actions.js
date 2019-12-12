@@ -1,9 +1,23 @@
-import { getPosts, postPost, getPost, patchPost, deletePost } from '../util/post_api_util';
+import { 
+  getPosts,
+  postPost,
+  getPost,
+  patchPost,
+  deletePost,
+  getPostLikes,
+  postPostLike,
+  deletePostLike
+} from '../util/post_api_util';
 
 export const RECEIVE_POSTS = 'RECEIVE_POSTS';
 export const RECEIVE_POST = 'RECEIVE_POST';
 export const UPDATE_FILTER = 'UPDATE_FILTER';
 export const REMOVE_POST = 'REMOVE_POST';
+
+export const RECEIVE_POST_LIKES = 'RECEIVE_POST_LIKES';
+export const RECEIVE_POST_LIKE = 'RECEIVE_POST_LIKE';
+export const REMOVE_POST_LIKE = 'REMOVE_POST_LIKE';
+
 
 const receivePosts = results => ({
   type: RECEIVE_POSTS,
@@ -25,6 +39,22 @@ const removePostFromState = post => ({
   type: REMOVE_POST,
   post
 })
+
+const receivePostLikes = results => ({
+  type: RECEIVE_POST_LIKES,
+  results
+});
+
+const receivePostLike = postLike => ({
+  type: RECEIVE_POST_LIKE,
+  postLike
+});
+
+const removePostLikeFromState = postLike => ({
+  type: REMOVE_POST_LIKE,
+  postLike
+});
+
 
 export const fetchPosts = filters => dispatch => (
   getPosts(filters).then(results => dispatch(receivePosts(results)))
@@ -56,3 +86,18 @@ export const updateFilter = (filter, value) => (dispatch, getState) => {
   dispatch(receiveFilter(filter, value));
   return fetchPosts(getState().filters)(dispatch);
 };
+
+export const fetchPostLikes = postId => dispatch => (
+  getPostLikes(postId).then(results => dispatch(receivePostLikes(results)))
+);
+
+export const createPostLike = formPostLike => dispatch => (
+  postPostLike(formPostLike)
+    .then(
+      postLike => dispatch(receivePostLike(postLike))
+    )
+);
+
+export const removePostLike = postLikeId => dispatch => (
+  deletePostLike(postLikeId).then(postLike => dispatch(removePostLikeFromState(postLike)))
+);

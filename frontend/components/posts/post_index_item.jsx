@@ -4,13 +4,52 @@ import { Link } from 'react-router-dom';
 import Carousel from 'react-bootstrap/Carousel';
 import * as timeago from 'timeago.js';
 import Button from 'react-bootstrap/Button';
+import ButtonToolBar from 'react-bootstrap/ButtonToolbar';
 import Nav from 'react-bootstrap/Nav';
-import { Modal } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-
+import Pluralize from 'pluralize';
 
 class PostIndexItem extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      likeCount: this.props.post.postLikes.length,
+      liked: this.props.currentUserLiked ? true : false
+    };
+    this.handleLikeClick = this.handleLikeClick.bind(this);
+  }
+
+  handleLikeClick(e) {
+    e.preventDefault();
+    if (this.props.currentUserId) {
+      if (this.state.liked) {
+        this.props.removePostLike(this.props.currentUserLiked.id).then(
+          () => {
+            this.setState({
+              likeCount: this.state.likeCount - 1,
+              liked: false
+            });
+          }
+        )
+      } else {
+        this.props.createPostLike({
+          user_id: this.props.currentUserId,
+          post_id: this.props.post.id
+        }).then(
+          () => {
+            this.setState({
+              likeCount: this.state.likeCount + 1,
+              liked: true
+            });
+          }
+        );
+      }
+
+      
+    }
+    
+  }
+
   render() {
     const { id, caption, author_id, photoUrls, created_at } = this.props.post;
     const { username } = this.props.author;
@@ -30,6 +69,15 @@ class PostIndexItem extends React.Component {
             </Carousel.Item>
           )}
         </Carousel>
+        <ButtonToolBar>
+          <Button variant="light" size="lg" onClick={this.handleLikeClick}>
+            {
+              this.state.liked ? <FontAwesomeIcon icon={['fas', 'heart']} /> :
+                <FontAwesomeIcon icon={['far', 'heart']} />
+            }
+          </Button>
+        </ButtonToolBar>
+        {(this.state.likeCount > 0) ? <p className="post-likes">{Pluralize('like', this.state.likeCount, true)}</p> : ""}
         <p className="caption"><Link to={`/${username}`} className="name">{username}</Link>  {caption}</p>
         <p className="timestamp">{timeago.format(created_at)}</p>
       </div>

@@ -34,7 +34,7 @@ class PostDetail extends React.Component {
         <div className="post-head">
           <Link to={`/${username}`} className="name">{username}</Link>
         </div>
-        <Carousel interval="" wrap="false">
+          <Carousel interval="" wrap="false">
           {photoUrls.map((photoUrl, idx) =>
             <Carousel.Item key={idx}>
               <img className="d-block w-100" src={photoUrl} width="600" />
