@@ -9,3 +9,9 @@ export const userByPostId = (entities, postId) => {
     return null;
   }
 };
+
+export const likersByPostId = (entities, postId) => (
+  Object.values(entities.postLikes)
+    .filter(postLike => postLike.post_id === postId)
+    .map(postLike => postLike.username)
+);

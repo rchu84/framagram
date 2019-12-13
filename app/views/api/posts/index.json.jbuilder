@@ -10,4 +10,15 @@
       json.partial! 'api/users/user', user: post.author
     end
   end
+
+  json.post_likes do
+    post.post_likes.each do |post_like|
+      json.set! post_like.id do
+        json.extract! post_like, :id, :user_id, :post_id  
+      end
+    end
+  end
+
+  #json.postLikes post.post_likes, :id, :user_id, :post_id
+
 end

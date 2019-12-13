@@ -9,12 +9,17 @@ import Nav from 'react-bootstrap/Nav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Pluralize from 'pluralize';
 
+import PostLikeIndex from '../post_likes/post_like_index';
+import PostLikeIndexContainer from '../post_likes/post_like_index_container';
+
 class PostIndexItem extends React.Component {
   constructor(props) {
     super(props);
+    let postLikeByCurrentUser = this.props.postLikes.find(el => el.user_id === this.props.currentUserId);
     this.state = {
-      likeCount: this.props.post.postLikes.length,
-      liked: this.props.currentUserLiked ? true : false
+      likeCount: this.props.postLikes.length,
+      liked: postLikeByCurrentUser ? true : false,
+      postLikeId: postLikeByCurrentUser ? postLikeByCurrentUser.id : null
     };
     this.handleLikeClick = this.handleLikeClick.bind(this);
   }
@@ -23,11 +28,12 @@ class PostIndexItem extends React.Component {
     e.preventDefault();
     if (this.props.currentUserId) {
       if (this.state.liked) {
-        this.props.removePostLike(this.props.currentUserLiked.id).then(
+        this.props.removePostLike(this.state.postLikeId).then(
           () => {
             this.setState({
               likeCount: this.state.likeCount - 1,
-              liked: false
+              liked: false,
+              postLikeId: null
             });
           }
         )
@@ -36,16 +42,15 @@ class PostIndexItem extends React.Component {
           user_id: this.props.currentUserId,
           post_id: this.props.post.id
         }).then(
-          () => {
+          action => {
             this.setState({
               likeCount: this.state.likeCount + 1,
-              liked: true
+              liked: true,
+              postLikeId: Object.keys(action.results.post_likes)[0]
             });
           }
         );
       }
-
-      
     }
     
   }
@@ -70,16 +75,23 @@ class PostIndexItem extends React.Component {
           )}
         </Carousel>
         <ButtonToolBar>
+          <div>
           <Button variant="light" size="lg" onClick={this.handleLikeClick}>
             {
               this.state.liked ? <FontAwesomeIcon icon={['fas', 'heart']} /> :
                 <FontAwesomeIcon icon={['far', 'heart']} />
             }
           </Button>
+          </div>
+          {/* <PostLikeIndex fetchPostLikes={this.props.fetchPostLikes} postId={id} /> */}
+          <Button variant="light" size="lg">
+            <FontAwesomeIcon icon={['far', 'comment']} />
+          </Button>
+
         </ButtonToolBar>
-        {(this.state.likeCount > 0) ? <p className="post-likes">{Pluralize('like', this.state.likeCount, true)}</p> : ""}
+        {(this.state.likeCount > 0) ? <PostLikeIndexContainer postId={id} likeCount={this.state.likeCount} /> : ""}
         <p className="caption"><Link to={`/${username}`} className="name">{username}</Link>  {caption}</p>
-        <p className="timestamp">{timeago.format(created_at)}</p>
+        <p className="timestamp">{timeago.format(created_at).toUpperCase()}</p>
       </div>
       //<Link to={`/posts/${id}`}>
       // <div id="postCarousel" className="carousel slide" data-ride="carousel">

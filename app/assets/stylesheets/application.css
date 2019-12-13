@@ -14,6 +14,10 @@
  *= require_self
  */
 
+a:hover {
+  text-decoration: none;
+}
+
 .carousel {
   /* width: 400px;
   margin: auto; */
@@ -82,6 +86,20 @@ body {
 .post-likes {
   padding: 0 24px;
   font-weight: 500;
+  color: inherit;
+}
+
+.btn-link:hover, .btn-link:focus {
+  text-decoration: none;
+  color: inherit;
+}
+
+.btn-light, .btn-light:hover, .btn-light:focus, .btn-light:focus:active {
+  background-color: inherit;
+  border-color: white;
+  outline: none;
+  outline-offset: none;
+  box-shadow: none;
 }
 
 .caption {

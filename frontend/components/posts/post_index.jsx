@@ -12,7 +12,8 @@ class PostIndex extends React.Component{
       <div className="posts-wrapper">
         {this.props.posts.map(post => 
           <PostIndexItem post={post}
-            currentUserLiked={post.postLikes.find(el => el.user_id === this.props.currentUserId)}
+            postLikes={post.postLikes.map(postLike => this.props.postLikes[postLike.id])}
+            // currentUserLiked={post.postLikes.find(el => el.user_id === this.props.currentUserId)}
             currentUserId={this.props.currentUserId}
             author={this.props.users[post.author_id]} 
             key={post.id}

@@ -11,7 +11,7 @@ import Root from './components/root';
 
 import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import { login, logout, signup } from './actions/session_actions';
-import { fetchPosts, fetchPost, createPostLike, removePostLike } from './actions/post_actions';
+import { fetchPosts, fetchPost, fetchPostLikes, createPostLike, removePostLike } from './actions/post_actions';
 
 import { parseJwt } from './util/util';
 
@@ -47,6 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchPosts = fetchPosts;
   window.fetchPost = fetchPost;
 
+  window.fetchPostLikes = fetchPostLikes;
   window.createPostLike = createPostLike;
   window.removePostLike = removePostLike;
   // -------------

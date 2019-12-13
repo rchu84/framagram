@@ -7,7 +7,8 @@ import { fetchPosts, createPostLike, removePostLike, fetchPostLikes } from '../.
 const mapStateToProps = state => ({
   currentUserId: state.session.id,
   posts: selectAllPosts(state),
-  users: state.entities.users
+  users: state.entities.users,
+  postLikes: state.entities.postLikes
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -45,9 +45,9 @@ const receivePostLikes = results => ({
   results
 });
 
-const receivePostLike = postLike => ({
+const receivePostLike = results => ({
   type: RECEIVE_POST_LIKE,
-  postLike
+  results
 });
 
 const removePostLikeFromState = postLike => ({
@@ -94,7 +94,7 @@ export const fetchPostLikes = postId => dispatch => (
 export const createPostLike = formPostLike => dispatch => (
   postPostLike(formPostLike)
     .then(
-      postLike => dispatch(receivePostLike(postLike))
+      results => dispatch(receivePostLike(results))
     )
 );
 

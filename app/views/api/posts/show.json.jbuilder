@@ -9,3 +9,5 @@ json.users do
     json.partial! 'api/users/user', user: @post.author
   end
 end
+
+json.postLikes @post.post_likes, :id, :user_id, :post_id
