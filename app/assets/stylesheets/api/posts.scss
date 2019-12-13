@@ -1,3 +1,36 @@
 // Place all the styles related to the api/posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.caption {
+  padding: 1px 18px;
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.caption > a {
+  font-weight: 600;
+  color: inherit;
+}
+
+.timestamp {
+  padding: 0 18px;
+  line-height: 18px;
+  font-size: 10px;
+  letter-spacing: .2px;
+  color: rgb(153, 153, 153);
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.post-options {
+  margin-bottom: 0;
+  text-align: center;
+}
+
+.delete-post-btn {
+  color: red;
+  font-weight: 600;
+}

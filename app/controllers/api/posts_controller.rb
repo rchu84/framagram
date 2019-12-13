@@ -2,11 +2,13 @@ class Api::PostsController < ApplicationController
   skip_before_action :authenticate_user, only: [:show]
 
   def index
-    @posts = Post.includes(:author, :post_likes).with_attached_photos.where(author_id: current_user.id)
+    @posts = Post.includes(:author, :post_likes, :comments, :commenters)
+      .with_attached_photos.where(author_id: current_user.id)
   end
 
   def show
-    @post = Post.includes(:author, :post_likes).with_attached_photos.find(params[:id])
+    @post = Post.includes(:author, :post_likes, :comments, :commenters)
+      .with_attached_photos.find(params[:id])
   end
 
   def create
