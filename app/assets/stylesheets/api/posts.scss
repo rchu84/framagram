@@ -10,10 +10,10 @@
   border-bottom: none;
 }
 
-.caption > a {
-  font-weight: 600;
-  color: inherit;
-}
+// .caption > a {
+//   font-weight: 600;
+//   color: inherit;
+// }
 
 .timestamp {
   padding: 0 18px;
@@ -33,4 +33,10 @@
 .delete-post-btn {
   color: red;
   font-weight: 600;
+}
+
+.username {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(38, 38, 38);
 }

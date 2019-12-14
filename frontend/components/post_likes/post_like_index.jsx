@@ -26,12 +26,16 @@ const PostLikeIndex = (props) => {
       <Button variant="link" onClick={toggle} className="post-likes">
         {Pluralize('like', likeCount, true)}
       </Button>
-      <Modal isOpen={modal} toggle={toggle} centered>
+      <Modal isOpen={modal} toggle={toggle} className="post-likes-modal" centered>
         <ModalHeader toggle={toggle}>Likes</ModalHeader>
         <ModalBody>
           <Table borderless>
             <tbody>
-              {likers.map((liker, idx) => <tr key={idx}><td>{liker}</td></tr>)}
+              {likers.map((liker, idx) =>
+                <tr key={idx}>
+                  <td>{liker}</td>
+                  <td><Button className="follow-btn" size="sm">Follow</Button></td>
+                </tr>)}
             </tbody>
           </Table>
         </ModalBody>

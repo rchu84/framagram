@@ -114,7 +114,7 @@ class PostIndexItem extends React.Component {
     return (
       <div className="post">
         <div className="post-head">
-          <Link to={`/${username}`} className="name">{username}</Link>
+          <Link to={`/${username}`} className="username">{username}</Link>
           {/* <div className="more-options">
             <Button variant="light"><FontAwesomeIcon icon="ellipsis-h" /></Button>
           </div> */}
@@ -154,7 +154,7 @@ class PostIndexItem extends React.Component {
         <ListGroup variant="flush">
         {
           (caption) ? <ListGroup.Item className="caption">
-            <Link to={`/${username}`} className="name">
+            <Link to={`/${username}`} className="username">
               {username}
             </Link>  {caption}
           </ListGroup.Item> : ""
@@ -166,7 +166,7 @@ class PostIndexItem extends React.Component {
             <ListGroup.Item className="caption" key={idx}
               onMouseEnter={this.mouseEnter} onMouseLeave={this.mouseLeave}
             >
-              <Link to={`/${comment.username}`} className="name">
+              <Link to={`/${comment.username}`} className="username">
                 {comment.username}
               </Link>  {comment.comment}
               {comment.user_id === currentUserId ? 
