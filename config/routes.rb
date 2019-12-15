@@ -12,7 +12,13 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    resources :users, only: [:show, :index, :update]
+    resources :users, only: [:show, :index, :update] do
+      get '/followers', to: 'user_follows#followers'
+      get '/following', to: 'user_follows#following'
+      post '/follow', to: 'user_follows#follow'
+      post '/unfollow', to: 'user_follows#unfollow'
+    end
+
     resources :posts, only: [:show, :index, :update, :destroy, :create] do
       resources :post_likes, only: [:index]
       resources :comments, only: [:index]

@@ -2,8 +2,10 @@ class Api::PostsController < ApplicationController
   skip_before_action :authenticate_user, only: [:show]
 
   def index
-    @posts = Post.includes(:author, :post_likes, :comments, :commenters)
-      .with_attached_photos.where(author_id: current_user.id)
+    followingIds = current_user.following.ids
+    followingIds << current_user.id
+    @posts = Post.includes(:author, { post_likes: { user: [:following, :followers] } }, :comments, :commenters)
+      .with_attached_photos.where(author_id: followingIds)
   end
 
   def show

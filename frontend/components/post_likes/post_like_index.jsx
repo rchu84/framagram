@@ -8,12 +8,19 @@ const PostLikeIndex = (props) => {
   const {
     likeCount,
     likers,
-    fetchPostLikes
+    fetchPostLikes,
+    fetchPosts,
+    followUser,
+    unfollowUser,
+    followingIds
   } = props;
 
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+
+  const follow = (userId) => followUser(userId).then(() => fetchPosts());
+  const unfollow = (userId) => unfollowUser(userId).then(() => fetchPosts());
 
   useEffect(() => {
     if (modal) {
@@ -33,8 +40,11 @@ const PostLikeIndex = (props) => {
             <tbody>
               {likers.map((liker, idx) =>
                 <tr key={idx}>
-                  <td>{liker}</td>
-                  <td><Button className="follow-btn" size="sm">Follow</Button></td>
+                  <td>{liker.username}</td>
+                  <td>{followingIds.includes(liker.user_id) ? 
+                      <Button className="follow-btn" size="sm" onClick={() => unfollow(liker.user_id)}>Unfollow</Button> :
+                      <Button className="follow-btn" size="sm" onClick={() => follow(liker.user_id)}>Follow</Button>}
+                  </td>
                 </tr>)}
             </tbody>
           </Table>

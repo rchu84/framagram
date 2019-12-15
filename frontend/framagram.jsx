@@ -16,6 +16,7 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import { login, logout, signup } from './actions/session_actions';
 import { fetchPosts, fetchPost, fetchPostLikes, createPostLike, removePostLike } from './actions/post_actions';
 import { fetchComments, createComment, removeComment } from './actions/comment_actions';
+import { followUser, unfollowUser } from './actions/user_actions';
 
 import { parseJwt } from './util/util';
 
@@ -58,6 +59,9 @@ document.addEventListener("DOMContentLoaded", () => {
   window.fetchComments = fetchComments;
   window.createComment = createComment;
   window.removeComment = removeComment;
+
+  window.followUser = followUser;
+  window.unfollowUser = unfollowUser;
   // -------------
 
   const root = document.getElementById("root");
