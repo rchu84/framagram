@@ -26,10 +26,12 @@
         json.username comment.user.username
       end
     end
+  end
 
+  post.commenters.each do |commenter|
     json.users do
-      json.set! comment.user_id do
-        json.partial! 'api/users/user', user: comment.user
+      json.set! commenter.id do
+        json.partial! 'api/users/user', user: commenter
       end
     end
   end

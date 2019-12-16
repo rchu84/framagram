@@ -4,12 +4,12 @@ class Api::PostsController < ApplicationController
   def index
     followingIds = current_user.following.ids
     followingIds << current_user.id
-    @posts = Post.includes(:author, { post_likes: { user: [:following, :followers] } }, :comments, :commenters)
+    @posts = Post.includes(:author, :post_likes, :likers, :comments, :commenters)
       .with_attached_photos.where(author_id: followingIds)
   end
 
   def show
-    @post = Post.includes(:author, :post_likes, :comments, :commenters)
+    @post = Post.includes(:author, :post_likes, :likers, :comments, :commenters)
       .with_attached_photos.find(params[:id])
   end
 
@@ -20,7 +20,6 @@ class Api::PostsController < ApplicationController
     else
       render json: @post.errors.full_messages, status: :unprocessable_entity
     end
-
   end
 
   def update

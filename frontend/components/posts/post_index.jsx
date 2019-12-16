@@ -2,9 +2,16 @@ import React from 'react';
 
 import PostIndexItem from './post_index_item';
 
+
 class PostIndex extends React.Component{
   componentDidMount() {
-    this.props.fetchPosts();
+    this.props.fetchPosts(this.props.filters);
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.filters !== prevProps.filters) {
+      this.props.fetchPosts(this.props.filters);
+    }
   }
 
   render() {

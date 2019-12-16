@@ -35,6 +35,20 @@ class PostIndexItem extends React.Component {
     this.mouseLeave = this.mouseLeave.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.filters) {
+      this.props.fetchPost(this.props.match.params.postId);
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.filters) {
+      if (prevProps.match.params.postId !== this.props.match.params.postId) {
+        this.props.fetchPost(this.props.match.params.postId);
+      }
+    }
+  }
+
   mouseEnter(e) {
     let commentDeleteBtn = e.target.querySelector('button');
     if (commentDeleteBtn) {
@@ -106,6 +120,8 @@ class PostIndexItem extends React.Component {
   }
 
   render() {
+    if (!this.props.post) return null;
+
     const { id, caption, author_id, photoUrls, created_at } = this.props.post;
     const { username } = this.props.author;
     const comments = this.props.comments;
@@ -119,6 +135,7 @@ class PostIndexItem extends React.Component {
             <Button variant="light"><FontAwesomeIcon icon="ellipsis-h" /></Button>
           </div> */}
           <PostItemOptions removePost={author_id === currentUserId ? this.props.removePost : null}
+            goToPost={this.props.filters}
             postId={id}
            />
         </div>

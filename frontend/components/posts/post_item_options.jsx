@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Table from 'react-bootstrap/Table';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Pluralize from 'pluralize';
+import { withRouter } from 'react-router-dom';
 
 const PostItemOptions = (props) => {
   // const {
@@ -16,6 +17,10 @@ const PostItemOptions = (props) => {
 
   const deletePost = () => {
     props.removePost(props.postId);
+  };
+
+  const goToPost = () => {
+    props.history.push(`/p/${props.postId}`)
   };
 
   return (
@@ -31,7 +36,11 @@ const PostItemOptions = (props) => {
               {props.removePost ? 
               <tr>
                 <td><Button variant="light" size="sm" onClick={deletePost} className="delete-post-btn">Delete Post</Button></td>
-              </tr> : ""}
+              </tr> : null}
+              {!props.goToPost ?
+                <tr>
+                  <td><Button variant="light" size="sm" onClick={goToPost}>Go to post</Button></td>
+                </tr> : null}
               <tr>
                 <td><Button variant="light" size="sm" onClick={toggle}>Cancel</Button></td>
               </tr>
@@ -43,4 +52,4 @@ const PostItemOptions = (props) => {
   );
 }
 
-export default PostItemOptions;
+export default withRouter(PostItemOptions);

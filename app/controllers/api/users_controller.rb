@@ -1,7 +1,12 @@
 class Api::UsersController < ApplicationController
-  before_action :authenticate_user!
-  
+  #before_action :authenticate_user!
+  skip_before_action :authenticate_user, only: [:show]
+
   def show
+    user = User.find_by(username: params[:username])
+    @posts = Post.includes(:author, :post_likes, :likers, :comments, :commenters)
+      .with_attached_photos.where(author_id: user.id)
+    render template: "api/posts/index"
   end
 
   def update

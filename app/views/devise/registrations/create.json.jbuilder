@@ -1,4 +1,7 @@
 json.user do |json|
-  json.partial! 'api/users/user', user: current_user
+  # manually set following and follower IDs to empty arrays for a new user
+  json.(current_user, :id, :email, :username)
+  json.followingIds []
+  json.followerIds []
 end
 json.token current_user.generate_jwt

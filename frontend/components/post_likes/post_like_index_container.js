@@ -7,7 +7,8 @@ import { followUser, unfollowUser } from '../../actions/user_actions';
 
 const mapStateToProps = (state, ownProps) => ({
   likers: likersByPostId(state.entities, ownProps.postId),
-  followingIds: state.entities.users[state.session.id].followingIds
+  followingIds: state.session.id ? state.entities.users[state.session.id].followingIds : [],
+  currentUserId: state.session.id
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
