@@ -46,7 +46,7 @@ const PostLikeIndex = (props) => {
                   <td>{liker.username}</td>
                   {liker.user_id !== currentUserId ?
                   <td>{followingIds.includes(liker.user_id) ? 
-                      <Button className="follow-btn" size="sm" onClick={() => unfollow(liker.user_id)}>Unfollow</Button> :
+                      <Button className="follow-btn" size="sm" variant="outline-info" onClick={() => unfollow(liker.user_id)}>Following</Button> :
                       <Button className="follow-btn" size="sm" onClick={() => follow(liker.user_id)}>Follow</Button>}
                   </td>
                   : null}

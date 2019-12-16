@@ -25,6 +25,8 @@ class User < ApplicationRecord
     JWT.encode({  id: id,
                   email: email,
                   username: username,
+                  followingIds: following.ids,
+                  followerIds: followers.ids,
                   exp: 1.day.from_now.to_i },
                 Rails.application.secrets.secret_key_base)
   end

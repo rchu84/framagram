@@ -1,10 +1,14 @@
 class Api::UserFollowsController < ApplicationController
   def followers
-    @followers = User.find(params[:user_id]).followers
+    @users = User.includes(following: [:following, :followers], followers: [:following, :followers])
+      .find(params[:user_id]).followers
+    render template: "api/user_follows/users"
   end
 
   def following
-    @following = User.find(params[:user_id]).following
+    @users = User.includes(following: [:following, :followers], followers: [:following, :followers])
+      .find(params[:user_id]).following
+    render template: "api/user_follows/users"
   end
 
   def follow

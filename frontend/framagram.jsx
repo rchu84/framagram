@@ -16,7 +16,7 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.min.css';
 import { login, logout, signup } from './actions/session_actions';
 import { fetchPosts, fetchPost, fetchPostLikes, createPostLike, removePostLike } from './actions/post_actions';
 import { fetchComments, createComment, removeComment } from './actions/comment_actions';
-import { followUser, unfollowUser } from './actions/user_actions';
+import { followUser, unfollowUser, fetchFollowers, fetchFollowing } from './actions/user_actions';
 
 import { parseJwt } from './util/util';
 
@@ -62,6 +62,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.followUser = followUser;
   window.unfollowUser = unfollowUser;
+  window.fetchFollowers = fetchFollowers;
+  window.fetchFollowing = fetchFollowing;
   // -------------
 
   const root = document.getElementById("root");

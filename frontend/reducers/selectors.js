@@ -11,8 +11,11 @@ export const selectPostsByUsername = (entities, username) => {
       .filter(post => post.author_id === user.id)
       .sort((a, b) => (a.created_at > b.created_at) ? -1 : 1);
   }
-  
 };
+
+export const selectUserByUsername = (entities, username) => (
+  Object.values(entities.users).find(user => user.username == username)
+);
 
 export const userByPostId = (entities, postId) => {
   if (entities.posts[postId]) {
