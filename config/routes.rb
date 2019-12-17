@@ -19,6 +19,7 @@ Rails.application.routes.draw do
       get '/following', to: 'user_follows#following'
       post '/follow', to: 'user_follows#follow'
       post '/unfollow', to: 'user_follows#unfollow'
+      get 'search', on: :collection
     end
 
     resources :posts, only: [:show, :index, :update, :destroy, :create] do

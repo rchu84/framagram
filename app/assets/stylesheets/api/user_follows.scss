@@ -1,3 +1,28 @@
 // Place all the styles related to the api/user_follows controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.user-info-header {
+  display: flex;
+  justify-content: space-around;
+}
+
+.user-info-header > h1 {
+  font-size: 28px;
+  font-weight: 300;
+}
+
+.user-info-header > .button {
+  border: none;
+  
+}
+
+.user-stats {
+  display: flex;
+  justify-content: center;
+  margin: 20px;
+}
+
+.user-stats > .list-group-item {
+  border: none;
+  background-color: inherit;
+}

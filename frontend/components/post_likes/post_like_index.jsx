@@ -3,6 +3,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, Table } from 'reactstrap';
 import Button from 'react-bootstrap/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Pluralize from 'pluralize';
+import { Link } from 'react-router-dom';
 
 const PostLikeIndex = (props) => {
   const {
@@ -43,7 +44,7 @@ const PostLikeIndex = (props) => {
             <tbody>
               {likers.map((liker, idx) =>
                 <tr key={idx}>
-                  <td>{liker.username}</td>
+                  <td><Link to={`/${liker.username}`}>{liker.username}</Link></td>
                   {liker.user_id !== currentUserId ?
                   <td>{followingIds.includes(liker.user_id) ? 
                       <Button className="follow-btn" size="sm" variant="outline-info" onClick={() => unfollow(liker.user_id)}>Following</Button> :

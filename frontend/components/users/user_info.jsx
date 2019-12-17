@@ -5,6 +5,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron';
 import ListGroup from 'react-bootstrap/ListGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Pluralize from 'pluralize';
+import { Link } from 'react-router-dom';
 
 const UserInfo = (props) => {
   // const {
@@ -46,7 +47,7 @@ const UserInfo = (props) => {
         fetchFollowers(user.id);
     }
   }, [modal]);
-  
+
   const mapFollowersString = str => {
     if (str === "Following") {
       return "followingIds";
@@ -58,12 +59,16 @@ const UserInfo = (props) => {
   return (
     <div>
       <Jumbotron className="user-info-wrapper">
-        <h1 className="text-center">{user.username}</h1>
-        {currentUserId === user.id ? <Button className="follow-btn" size="sm" variant="outline-info">Edit Profile</Button> :
-          currentUserId && user.followerIds.includes(currentUserId) ?
-          <Button className="follow-btn" size="sm" variant="outline-info" onClick={() => unfollow(user.id)}>Following</Button> :
-          <Button className="follow-btn" size="sm" onClick={() => follow(user.id)}>Follow</Button>}
-        <ListGroup horizontal>
+        <div className="user-info-header">
+          <h1>{user.username}</h1>
+          {/* {currentUserId === user.id ? <Button className="follow-btn" size="sm" variant="outline-info">Edit Profile</Button> : */}
+          { currentUserId === user.id ? null :
+            currentUserId && user.followerIds.includes(currentUserId) ?
+            <Button className="follow" size="sm" variant="outline-info" onClick={() => unfollow(user.id)}>Following</Button> :
+            <Button className="follow" size="sm" onClick={() => follow(user.id)}>Follow</Button>}
+        </div>
+
+        <ListGroup horizontal className="user-stats">
           <ListGroup.Item>{Pluralize('post', posts.length, true)}</ListGroup.Item>
           <ListGroup.Item onClick={() => toggle({ title: "Followers" })}>
             {Pluralize('follower', user.followerIds.length, true)}
@@ -81,7 +86,7 @@ const UserInfo = (props) => {
               {user[mapFollowersString(modal.title)].map((id, idx) =>
                 users[id] ? 
                 <tr key={idx}>
-                  <td>{users[id].username}</td>
+                  <td><Link to={`/${users[id].username}`}>{users[id].username}</Link></td>
                   {users[id].id !== currentUserId ?
                     <td>{users[id].followerIds.includes(currentUserId) ?
                       <Button className="follow-btn" size="sm" variant="light" onClick={() => unfollow(users[id].id)}>Following</Button> :

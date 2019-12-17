@@ -3,7 +3,8 @@ import {
   postUnfollow,
   getUser,
   getFollowers,
-  getFollowing
+  getFollowing,
+  getSearchUsers
 } from '../util/user_api_util';
 
 import { RECEIVE_POSTS } from './post_actions';
@@ -12,6 +13,7 @@ export const FOLLOW_USER = 'FOLLOW_USER';
 export const UNFOLLOW_USER = 'UNFOLLOW_USER';
 export const RECEIVE_FOLLOWERS = 'RECEIVE_FOLLOWERS';
 export const RECEIVE_FOLLOWING = 'RECEIVE_FOLLOWING';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
 
 const receiveFollowers = results => ({
   type: RECEIVE_FOLLOWERS,
@@ -38,6 +40,11 @@ const receivePosts = results => ({
   results
 });
 
+const receiveUsers = results => ({
+  type: RECEIVE_USERS,
+  results
+});
+
 export const followUser = userId => dispatch => (
   postFollow(userId)
     .then(
@@ -49,8 +56,8 @@ export const unfollowUser = userId => dispatch => (
   postUnfollow(userId).then(results => dispatch(receiveUnfollow(results)))
 );
 
-export const fetchPostsByUsername = username => dispatch => (
-  getUser(username).then(results => dispatch(receivePosts(results)))
+export const fetchPostsByUsername = filters => dispatch => (
+  getUser(filters).then(results => dispatch(receivePosts(results)))
 );
 
 export const fetchFollowers = userId => dispatch => (
@@ -59,4 +66,8 @@ export const fetchFollowers = userId => dispatch => (
 
 export const fetchFollowing = userId => dispatch => (
   getFollowing(userId).then(results => dispatch(receiveFollowing(results)))
+);
+
+export const searchUsers = query => dispatch => (
+  getSearchUsers(query).then(results => dispatch(receiveUsers(results)))
 );

@@ -131,16 +131,16 @@ class PostIndexItem extends React.Component {
       <div className="post">
         <div className="post-head">
           <Link to={`/${username}`} className="username">{username}</Link>
-          {/* <div className="more-options">
-            <Button variant="light"><FontAwesomeIcon icon="ellipsis-h" /></Button>
-          </div> */}
+
           <PostItemOptions removePost={author_id === currentUserId ? this.props.removePost : null}
             goToPost={this.props.filters}
             postId={id}
            />
         </div>
 
-        <Carousel interval="" wrap="false">
+        <Carousel interval={null} 
+          controls={photoUrls.length > 1 ? true : false} 
+          indicators={photoUrls.length > 1 ? true : false}>
           {photoUrls.map((photoUrl, idx) =>
             <Carousel.Item key={idx}>
               <img className="d-block w-100" src={photoUrl} width="600" />

@@ -1,11 +1,19 @@
 class Api::PostsController < ApplicationController
   skip_before_action :authenticate_user, only: [:show]
 
+  LIMIT = 5
+
   def index
     followingIds = current_user.following.ids
     followingIds << current_user.id
     @posts = Post.includes(:author, :post_likes, :likers, :comments, :commenters)
-      .with_attached_photos.where(author_id: followingIds)
+      .with_attached_photos
+      .where(author_id: followingIds)
+      .limit(LIMIT)
+      .order(created_at: :desc)
+    
+    @posts = @posts.where('posts.created_at < :max_created_at', max_created_at: params[:max_created_at]) if params[:max_created_at].present?
+
   end
 
   def show

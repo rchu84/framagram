@@ -39,4 +39,19 @@ class User < ApplicationRecord
     following_relationship.find_by(following_id: user_id).destroy
   end
 
+  def feed_posts(limit = nil, max_created_at = nil)
+    @posts = Post
+      .joins(:author)
+      .joins('LEFT OUTER JOIN user_follows ON users.id = user_follows.following_id')
+      .where('posts.author_id = :id OR user_follows.follower_id = :id', id: self.id)
+      .order('posts.created_at DESC')
+      .distinct
+    
+    @posts = @posts.limit(limit) unless limit.nil?
+    @posts = @posts.where('posts.created_at < :max_created_at', max_created_at: max_created_at) unless max_created_at.nil?
+
+
+    @posts
+  end
+
 end

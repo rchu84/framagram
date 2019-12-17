@@ -2,11 +2,14 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { fab } from '@fortawesome/free-brands-svg-icons';
-import { faEllipsisH, faTimes, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { fab, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import { faEllipsisH, faTimes, faHeart, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import {
   faHeart as faHeartRegular, 
-  faComment as faCommentRegular
+  faComment as faCommentRegular,
+  faPlusSquare as faPlusSquareRegular,
+  faUser as faUserRegular,
+  faUserCircle as faUserCircleRegular
 } from '@fortawesome/free-regular-svg-icons';
 
 import configureStore from './store/store';
@@ -20,7 +23,20 @@ import { followUser, unfollowUser, fetchFollowers, fetchFollowing } from './acti
 
 import { parseJwt } from './util/util';
 
-library.add(fab, faEllipsisH, faTimes, faHeart, faHeartRegular, faCommentRegular);
+library.add(
+  fab, 
+  faEllipsisH, 
+  faTimes, 
+  faHeart, 
+  faHeartRegular, 
+  faCommentRegular,
+  faUserRegular,
+  faUserCircleRegular,
+  faPlusSquareRegular,
+  faSignInAlt,
+  faSignOutAlt,
+  faInstagram
+);
 
 document.addEventListener("DOMContentLoaded", () => {
 

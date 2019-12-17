@@ -25,6 +25,18 @@ a:hover {
   border-top: 1px solid #eeefef;
 }
 
+.carousel-indicators > li {
+  border-radius: 50%;
+    width: 6px;
+    height: 6px;
+    background-color: #3897f0;
+}
+
+.carousel-indicators {
+  bottom: -55px;
+}
+
+
 body {
   background-color: #fafafa;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
@@ -39,20 +51,33 @@ body {
 .navbar-default {
   background-color: #fff;
   height: 54px;
+  border-bottom: 1px solid rgb(219, 219, 219);
   .navbar-nav li a {
     color: #125688;
   }
 }
 
+@media only screen and (max-width : 768px) {
+.collapsing,
+.navbar-collapse.collapse {
+  background-color: #fafafa;
+  border: 1px solid #eeefef;
+}
+}
+
+.nav-link {
+  color: #125688;
+}
+
 .navbar-container {
-  width: 640px;
+  width: 740px;
   margin: 0 auto;
 }
 
 .user-info-wrapper {
   padding-top: 40px;
   margin: 0 auto;
-  max-width: 900px;
+  max-width: 800px;
   width: 100%;
   background-color: inherit;
 }
@@ -109,6 +134,20 @@ body {
 .btn-light:disabled {
   color: rgb(153, 153, 153);
 }
+
+.session-form-wrapper {
+  width: 40%;
+  margin: 100px auto;
+  background-color: #fff;
+  padding: 40px;
+  border: 1px solid #eeefef;
+  border-radius: 3px;
+}
+
+.session-form-wrapper > h2 {
+  padding-bottom: 20px;
+}
+
 
 
 .form-wrapper {

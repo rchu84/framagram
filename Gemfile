@@ -31,6 +31,9 @@ gem 'devise'
 gem 'jwt'
 gem 'active_storage_validations'
 gem 'bootstrap', '~> 4.4.1'
+gem 'faker'
+gem 'mini_magick'
+gem 'image_processing'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

@@ -1,6 +1,6 @@
 class Api::UsersController < ApplicationController
   #before_action :authenticate_user!
-  skip_before_action :authenticate_user, only: [:show]
+  skip_before_action :authenticate_user, only: [:show, :search]
 
   def show
     user = User.find_by(username: params[:username])
@@ -14,6 +14,14 @@ class Api::UsersController < ApplicationController
       render :show
     else
       render json: { errors: current_users.errors }, status: :unprocessable_entity
+    end
+  end
+
+  def search
+    if params[:query].present?
+      @users = User.includes(:followers, :following).where('username ~ ?', params[:query])
+    else
+      @users = User.none
     end
   end
 

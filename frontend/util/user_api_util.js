@@ -18,10 +18,11 @@ export const postUnfollow = userId => (
   })
 );
 
-export const getUser = username => (
+export const getUser = filters => (
   $.ajax({
     method: 'GET',
-    url: `api/users/${username}`
+    url: `api/users/${filters.username}`,
+    data: { max_created_at: filters.maxCreatedAt }
   })
 );
 
@@ -42,5 +43,14 @@ export const getFollowers = userId => (
     beforeSend: function (xhr) {   //Include the bearer token in header
       xhr.setRequestHeader("Authorization", 'Bearer ' + localStorage.token);
     }
+  })
+);
+
+export const getSearchUsers = query => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/users/search',
+    dataType: 'json',
+    data: { query }
   })
 );
