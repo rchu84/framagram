@@ -22,10 +22,18 @@ class PostIndex extends React.Component{
     Object.keys(data).forEach(key => (data[key] == null) && delete data[key]);
     delete data["hasMorePosts"];
     this.props.fetchPosts(data)
-      .then(res => this.setState({
-        max_created_at: this.props.posts[this.props.posts.length - 1].created_at,
-        hasMorePosts: Object.keys(res.results.posts).length == LIMIT
-      }));
+      .then(res => {
+        if (res.results.posts) {
+          this.setState({
+            max_created_at: this.props.posts[this.props.posts.length - 1].created_at,
+            hasMorePosts: Object.keys(res.results.posts).length == LIMIT
+          });
+        } else {
+          this.setState({
+            hasMorePosts: false
+          });
+        }
+      });
   }
 
   componentDidMount() {
