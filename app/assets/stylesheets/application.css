@@ -50,19 +50,11 @@ body {
 
 .navbar-default {
   background-color: #fff;
-  height: 54px;
+  height: 80px;
   border-bottom: 1px solid rgb(219, 219, 219);
   .navbar-nav li a {
     color: #125688;
   }
-}
-
-@media only screen and (max-width : 768px) {
-.collapsing,
-.navbar-collapse.collapse {
-  background-color: #fafafa;
-  border: 1px solid #eeefef;
-}
 }
 
 .nav-link {
@@ -148,8 +140,6 @@ body {
   padding-bottom: 20px;
 }
 
-
-
 .form-wrapper {
   width: 60%;
   margin: 20px auto;
@@ -177,4 +167,34 @@ body {
   position: absolute;
   top: 16px;
   right: 8px;
+}
+
+@media screen and (max-width : 768px) {
+  .collapsing,
+  .navbar-collapse.collapse {
+    background-color: #fafafa;
+    border: 1px solid #eeefef;
+  }
+
+  .session-form-wrapper {
+    width: 80%;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 40px;
+    border: 1px solid #eeefef;
+    border-radius: 3px;
+  }
+
+  .posts-wrapper {
+    max-width: 100%;
+  }
+
+  .form-wrapper {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 40px;
+    border: 1px solid #eeefef;
+    border-radius: 3px;
+  }
 }
