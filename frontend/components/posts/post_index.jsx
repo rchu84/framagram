@@ -45,7 +45,7 @@ class PostIndex extends React.Component{
   }
 
   componentDidUpdate(prevProps, prevState) {
-    if ((this.props.filters !== prevProps.filters)) {
+    if (this.props.filters !== prevProps.filters) {
       // let data = Object.assign({}, this.state);
       // Object.keys(data).forEach(key => (data[key] == null) && delete data[key]);
       // delete data["hasMorePosts"];
@@ -53,7 +53,11 @@ class PostIndex extends React.Component{
       //   .then(() => this.setState({
       //     max_created_at: this.props.posts[this.props.posts.length - 1].created_at
       //   }));
-      this.fetchMoreData();
+      if (this.props.filters) {
+        this.setState({ username: this.props.filters }, () => this.fetchMoreData());
+      } else {
+        this.fetchMoreData();
+      }
     }
   }
 
@@ -79,6 +83,7 @@ class PostIndex extends React.Component{
             </p>
           }
         >
+        
 
         {this.props.posts.map(post => 
         <Row className="justify-content-md-center" key={post.id}>

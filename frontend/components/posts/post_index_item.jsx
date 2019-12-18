@@ -37,14 +37,33 @@ class PostIndexItem extends React.Component {
 
   componentDidMount() {
     if (this.props.filters) {
-      this.props.fetchPost(this.props.match.params.postId);
+      this.props.fetchPost(this.props.match.params.postId)
+        .then(res => {
+          let postLikes = res.results.post_likes;
+          let postLikeByCurrentUser = Object.values(postLikes).find(el => el.user_id === this.props.currentUserId);
+          this.setState({
+            likeCount: Object.keys(postLikes).length,
+            liked: postLikeByCurrentUser ? true : false,
+            postLikeId: postLikeByCurrentUser ? postLikeByCurrentUser.id : null
+          });
+        });
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.filters) {
       if (prevProps.match.params.postId !== this.props.match.params.postId) {
-        this.props.fetchPost(this.props.match.params.postId);
+        this.props.fetchPost(this.props.match.params.postId)
+          .then(res => {
+            let postLikes = res.results.post_likes;
+            let postLikeByCurrentUser = Object.values(postLikes).find(el => el.user_id === this.props.currentUserId);
+            this.setState({
+              comment: "",
+              likeCount: Object.keys(postLikes).length,
+              liked: postLikeByCurrentUser ? true : false,
+              postLikeId: postLikeByCurrentUser ? postLikeByCurrentUser.id : null
+            });
+          });
       }
     }
   }

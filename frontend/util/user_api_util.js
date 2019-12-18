@@ -21,7 +21,7 @@ export const postUnfollow = userId => (
 export const getUser = filters => (
   $.ajax({
     method: 'GET',
-    url: `api/users/${filters.username}`,
+    url: `api/users/${filters.username}/`,
     data: { max_created_at: filters.maxCreatedAt }
   })
 );

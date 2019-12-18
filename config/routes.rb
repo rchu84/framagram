@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
-    get 'users/:username', to: 'users#show'
+    get 'users/:username', constraints: { username: /.*/ }, to: 'users#show'
     resources :users, only: [:show, :index, :update] do
       get '/followers', to: 'user_follows#followers'
       get '/following', to: 'user_follows#following'

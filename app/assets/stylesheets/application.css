@@ -14,6 +14,8 @@
  *= require_self
  */
 
+/* html { font-size: calc(1em + 1vw); } */
+
 a:hover {
   text-decoration: none;
 }
@@ -38,6 +40,7 @@ a:hover {
 
 
 body {
+  padding-top: 80px;
   background-color: #fafafa;
   font-family: proxima-nova, 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
@@ -72,6 +75,11 @@ body {
   max-width: 800px;
   width: 100%;
   background-color: inherit;
+}
+
+.dropdown-menu {
+  left: auto;
+  right: 10px;
 }
 
 /* .posts-wrapper {
@@ -133,7 +141,7 @@ body {
 }
 
 .session-form-wrapper {
-  width: 40%;
+  width: 60%;
   margin: 100px auto;
   background-color: #fff;
   padding: 40px;
@@ -183,11 +191,11 @@ body {
 }
 
 @media screen and (max-width: 768px) {
-  .collapsing,
+  /* .collapsing,
   .navbar-collapse.collapse {
     background-color: #fafafa;
     border: 1px solid #eeefef;
-  }
+  } */
 
   .session-form-wrapper {
     width: 80%;

@@ -53,7 +53,7 @@ export default ({ currentUser, logout }) => {
     );
 
   return (
-    <Navbar bg="light" expand="lg" className="navbar-default">
+    <Navbar fixed="top" collapseOnSelect bg="light" expand={true} className="navbar-default">
       <Container className="navbar-container">
       <Navbar.Brand href="#"><FontAwesomeIcon icon={['fab', 'instagram']} size="2x" /></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
