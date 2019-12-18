@@ -125,23 +125,33 @@ User.all.each do |user|
       caption: Faker::Lorem.paragraph
     )
     rand(1..3).times do
-      filename = FILES.sample
-      file = open('https://framagram-seeds.s3-us-west-1.amazonaws.com/' + filename)
-      p.photos.attach(io: file, filename: filename)
+      # filename = FILES.sample
+      # file = open('https://framagram-seeds.s3-us-west-1.amazonaws.com/' + filename)
+      # p.photos.attach(io: file, filename: filename)
+      files = Dir.glob("app/assets/images/*.jpg")
+      file = File.open(files.sample)
+      p.photos.attach(io: file, filename: file.path.split("/").last)
     end
     p.save
+    p.update(created_at: rand(1.year).seconds.ago.to_s)
   end
 end
 
 User.all.each do |user|
   user.liked_post_ids = Post.all.ids.sample(rand(50..100))
-  rand(100..200).times do
-    Comment.create(
+  rand(20..50).times do
+    c = Comment.new(
       comment: Faker::Lorem.paragraph,
       post_id: Post.all.ids.sample,
       user_id: user.id
     )
+    c.save
+    c.update(created_at: rand(Time.now - Post.find(c.post_id).created_at).seconds.ago.to_s)
   end
+end
+
+PostLike.all.each do |post_like|
+  post_like.update(created_at: rand(Time.now - Post.find(post_like.post_id).created_at).seconds.ago.to_s)
 end
 
        #files = Dir.glob("app/assets/images/*.jpg")

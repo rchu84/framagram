@@ -9,10 +9,6 @@ import PostDetailContainer from './posts/post_detail_container';
 import PostByUsernameContainer from './posts/post_by_username_container';
 import UserContainer from './users/user_container';
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Route, Switch } from 'react-router-dom';
 
@@ -22,7 +18,6 @@ const App = () => (
       <NavbarContainer />
     </header>
 
-    <Container fluid={true}>
     <Switch>
       <AuthRoute path="/login" component={LoginFormContainer} />
       <AuthRoute path="/signup" component={SignupFormContainer} />
@@ -34,7 +29,6 @@ const App = () => (
       <ProtectedRoute exact path="/posts/new" component={CreatePostFormContainer} />
       <ProtectedRoute exact path="/p/:postId/edit" component={EditPostFormContainer} />
     </Switch>
-    </Container>
   </div>
 );
 

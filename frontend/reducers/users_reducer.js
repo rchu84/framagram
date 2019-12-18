@@ -1,4 +1,4 @@
-import { RECEIVE_CURRENT_USER } from '../actions/session_actions';
+import { RECEIVE_CURRENT_USER, LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import { RECEIVE_POSTS, RECEIVE_POST } from '../actions/post_actions';
 import { FOLLOW_USER, UNFOLLOW_USER, RECEIVE_FOLLOWERS, RECEIVE_FOLLOWING, RECEIVE_USERS } from '../actions/user_actions';
 
@@ -24,6 +24,8 @@ export default (state = _defaultUsers, action) => {
       newState[action.results.follower_id].followingIds = newState[action.results.follower_id].followingIds.filter(item => item !== action.results.following_id);
       newState[action.results.following_id].followerIds = newState[action.results.following_id].followerIds.filter(item => item !== action.results.follower_id);
       return newState;
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }

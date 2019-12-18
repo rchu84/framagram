@@ -1,5 +1,8 @@
 export const selectAllPosts = ({ entities }) => (
-  Object.values(entities.posts).sort((a, b) => (a.created_at > b.created_at)? -1 : 1)
+  Object.values(entities.posts)
+    .filter(post => (post.author_id === getState().session.id) || 
+      entities.users[getState().session.id].followingIds.includes(post.author_id))
+    .sort((a, b) => (a.created_at > b.created_at)? -1 : 1)
 );
 
 export const selectPostsByUsername = (entities, username) => {

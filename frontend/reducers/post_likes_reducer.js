@@ -7,6 +7,10 @@ import {
   REMOVE_POST
  } from '../actions/post_actions';
 
+ import {
+  LOGOUT_CURRENT_USER
+ } from '../actions/session_actions';
+
 const postLikesReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
@@ -19,6 +23,8 @@ const postLikesReducer = (state = {}, action) => {
       let newState = Object.assign({}, state);
       delete newState[action.postLike.id];
       return newState;
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }

@@ -9,6 +9,10 @@ import {
   REMOVE_COMMENT
 } from '../actions/comment_actions';
 
+import {
+  LOGOUT_CURRENT_USER
+} from '../actions/session_actions';
+
 const commentsReducer = (state = {}, action) => {
   Object.freeze(state);
   switch (action.type) {
@@ -20,6 +24,8 @@ const commentsReducer = (state = {}, action) => {
       let newState = Object.assign({}, state);
       delete newState[action.comment.id];
       return newState;
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }

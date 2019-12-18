@@ -5,6 +5,10 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 import Spinner from 'react-bootstrap/Spinner';
 
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 const LIMIT = 5;
 
 class PostIndex extends React.Component{
@@ -40,8 +44,8 @@ class PostIndex extends React.Component{
     this.fetchMoreData();
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.filters !== prevProps.filters) {
+  componentDidUpdate(prevProps, prevState) {
+    if ((this.props.filters !== prevProps.filters)) {
       // let data = Object.assign({}, this.state);
       // Object.keys(data).forEach(key => (data[key] == null) && delete data[key]);
       // delete data["hasMorePosts"];
@@ -77,6 +81,8 @@ class PostIndex extends React.Component{
         >
 
         {this.props.posts.map(post => 
+        <Row className="justify-content-md-center" key={post.id}>
+          <Col xs={12} md={8}>
           <PostIndexItem post={post}
             fetchPost={this.props.fetchPost}
             removePost={this.props.removePost}
@@ -96,7 +102,9 @@ class PostIndex extends React.Component{
             fetchPostLikes={this.props.fetchPostLikes}
             createComment={this.props.createComment}
             removeComment={this.props.removeComment}
-          />)
+          />
+          </Col>
+        </Row>)
         }
 
         </InfiniteScroll>
