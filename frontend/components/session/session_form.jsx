@@ -70,10 +70,11 @@ class SessionForm extends React.Component {
           {formString}
         </Button>
       </Form>
-        <div className="text-center">
+        <div className="text-center align-middle">
           {formType == 'login' ?
-            <Link className="btn" to="/signup">Don't have an account? Sign Up</Link> :
-            <Link className="btn" to="/login">Have an account? Log In</Link>
+            
+            <Link className="btn" to="/signup">Don't have an account?<br></br><span style={{ color: '#3897f0'}}>Sign Up</span></Link> :
+            <Link className="btn" to="/login">Have an account? <span style={{ color: '#3897f0' }}>Log In</span></Link>
           }
         </div>
 

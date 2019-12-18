@@ -39,7 +39,7 @@ const PostLikeIndex = (props) => {
       </Button>
       <Modal isOpen={modal} toggle={toggle} className="post-likes-modal" centered>
         <ModalHeader toggle={toggle}>Likes</ModalHeader>
-        <ModalBody>
+        <ModalBody className="modal-body">
           <Table borderless>
             <tbody>
               {likers.map((liker, idx) =>

@@ -80,16 +80,15 @@ const UserInfo = (props) => {
       </Jumbotron>
       <Modal isOpen={modal.isOpen} toggle={() => toggle({ title: null })} className="post-likes-modal" centered>
         <ModalHeader toggle={() => toggle({ title: null })}>{modal.title}</ModalHeader>
-        <ModalBody>
-          <Table borderless>
+        <ModalBody className="modal-body"> <Table borderless>
             <tbody>
               {user[mapFollowersString(modal.title)].map((id, idx) =>
                 users[id] ? 
                 <tr key={idx}>
-                  <td><Link to={`/${users[id].username}`}>{users[id].username}</Link></td>
+                    <td><Link to={`/${users[id].username}`} onClick={() => toggle({ title: null })}>{users[id].username}</Link></td>
                   {users[id].id !== currentUserId ?
                     <td>{users[id].followerIds.includes(currentUserId) ?
-                      <Button className="follow-btn" size="sm" variant="light" onClick={() => unfollow(users[id].id)}>Following</Button> :
+                      <Button className="follow-btn" size="sm" variant="outline-info" onClick={() => unfollow(users[id].id)}>Following</Button> :
                       <Button className="follow-btn" size="sm" onClick={() => follow(users[id].id)}>Follow</Button>}
                     </td>
                     : null}

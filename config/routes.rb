@@ -13,14 +13,19 @@ Rails.application.routes.draw do
   end
 
   namespace :api, defaults: { format: :json } do
+    get 'users/:id/followers', to: 'user_follows#followers'
+    get 'users/:id/following', to: 'user_follows#following'
     get 'users/:username', constraints: { username: /.*/ }, to: 'users#show'
+
     resources :users, only: [:show, :index, :update] do
-      get '/followers', to: 'user_follows#followers'
-      get '/following', to: 'user_follows#following'
+      # get '/followers', to: 'user_follows#followers'
+      # get '/following', to: 'user_follows#following'
       post '/follow', to: 'user_follows#follow'
       post '/unfollow', to: 'user_follows#unfollow'
       get 'search', on: :collection
     end
+
+    
 
     resources :posts, only: [:show, :index, :update, :destroy, :create] do
       resources :post_likes, only: [:index]

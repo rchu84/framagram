@@ -16,6 +16,15 @@
 
 /* html { font-size: calc(1em + 1vw); } */
 
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
 a:hover {
   text-decoration: none;
 }
@@ -37,7 +46,6 @@ a:hover {
 .carousel-indicators {
   bottom: -55px;
 }
-
 
 body {
   padding-top: 80px;
@@ -90,6 +98,11 @@ body {
 } */
 .posts-wrapper {
   padding-top: 20px;
+}
+
+.infinite-scroll-component {
+  overflow-x: hidden !important;
+  width: 100%;
 }
 
 .post {
