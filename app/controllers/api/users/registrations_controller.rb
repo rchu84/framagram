@@ -13,7 +13,9 @@ class Api::Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super
+    super do |resource|
+      resource.following_ids = User.all.ids.reject{|id| id == resource.id}.sample(10)
+    end
   end
 
   # GET /resource/edit
