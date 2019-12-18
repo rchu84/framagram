@@ -22,6 +22,20 @@ class Api::PostsController < ApplicationController
   end
 
   def create
+    post_images = { photos: [] }
+    p params[:post][:photos].count
+    params[:post][:photos].each_with_index do |photo, i|
+      image = MiniMagick::Image.new(photo.tempfile.path) do |b|
+        #json.photoUrls post.photos.map { |file| file.variant(combine_options: {resize: "640x640^", extent: "640x640", gravity: "center"}).processed.service_url }
+        #file.variant(resize: "640x640^").processed.service_url
+        b.resize "640x640^"
+        b.extent "640x640"
+        b.gravity "center"
+      end
+      post_images[:photos] << image
+    end
+    p post_images
+    post_params.merge!(post_images)
     @post = Post.new(post_params)
     if @post.save
       render :show

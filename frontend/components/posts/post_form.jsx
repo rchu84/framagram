@@ -72,7 +72,7 @@ class PostForm extends React.Component {
             if (!this.state.photoUrls.includes(reader.result)) {
               this.setState({
                 photoUrls: [...this.state.photoUrls, reader.result],
-                photos: { [reader.result]: file }
+                photos: { ...this.state.photos, [reader.result]: file }
               });
             }
           };
