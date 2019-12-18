@@ -110,7 +110,7 @@ FILES = ["gladys-aguayo-1Vk_u0LKd8Y-unsplash.jpg",
  "bady-qb-UKUsWfnm7cA-unsplash.jpg",
  "yulia-khlebnikova-oh5MXKl9OHo-unsplash.jpg"]
 
-5.times {
+20.times {
   User.create(
     username: Faker::Internet.unique.username,
     email: Faker::Internet.unique.safe_email,
@@ -118,8 +118,8 @@ FILES = ["gladys-aguayo-1Vk_u0LKd8Y-unsplash.jpg",
   }
 
 User.all.each do |user|
-  user.following_ids = User.all.ids.sample(rand(2..3)).reject{ |i| i == user.id }
-  rand(1..3).times do  
+  user.following_ids = User.all.ids.sample(rand(10..20)).reject{ |i| i == user.id }
+  rand(5..10).times do  
     p = Post.new(
       author_id: user.id,
       caption: Faker::Lorem.paragraph
@@ -133,18 +133,18 @@ User.all.each do |user|
   end
 end
 
+User.all.each do |user|
+  user.liked_post_ids = Post.all.ids.sample(rand(50..100))
+  rand(100..200).times do
+    Comment.create(
+      comment: Faker::Lorem.paragraph,
+      post_id: Post.all.ids.sample,
+      user_id: user.id
+    )
+  end
+end
+
        #files = Dir.glob("app/assets/images/*.jpg")
       #file = File.open(files.sample)
       #p.photos.attach(io: file, filename: file.path.split("/").last)
       # https://framagram-seeds.s3-us-west-1.amazonaws.com/
-
-# User.all.each do |user|
-#   user.liked_post_ids = Post.all.ids.sample(rand(100..200))
-#   rand(100..200).times do
-#     Comment.create(
-#       comment: Faker::Lorem.paragraph,
-#       post_id: Post.all.ids.sample,
-#       user_id: user.id
-#     )
-#   end
-# end
