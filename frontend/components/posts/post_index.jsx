@@ -46,13 +46,6 @@ class PostIndex extends React.Component{
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.filters !== prevProps.filters) {
-      // let data = Object.assign({}, this.state);
-      // Object.keys(data).forEach(key => (data[key] == null) && delete data[key]);
-      // delete data["hasMorePosts"];
-      // this.props.fetchPosts(data)
-      //   .then(() => this.setState({
-      //     max_created_at: this.props.posts[this.props.posts.length - 1].created_at
-      //   }));
       if (this.props.filters) {
         this.setState({ username: this.props.filters }, () => this.fetchMoreData());
       } else {
@@ -96,8 +89,6 @@ class PostIndex extends React.Component{
               Object.values(this.props.comments)
                 .filter(comment => comment.post_id === post.id)
                 .sort((a, b) => (a.created_at < b.created_at) ? -1 : 1)
-              // post.comments.map(comment => this.props.comments[comment.id])
-              //   .sort((a, b) => (a.created_at < b.created_at) ? -1 : 1)
               }
             currentUserId={this.props.currentUserId}
             author={this.props.users[post.author_id]} 

@@ -35,9 +35,12 @@ class SessionForm extends React.Component {
     const formString = formType == 'login' ? 'Login' : 'Sign Up';
     return (
       <div className="session-form-wrapper">
-        <h2 className="text-center">{formString}</h2>
+        <h2 className="text-center">Framagram</h2>
+        {formType == 'login' ? "" :
+          <h3 className="sign-up-text">Sign up to see photos from your friends.</h3>
+        }
       <Form onSubmit={this.handleSubmit}>
-        {errors.map((error, idx) => <p key={idx}>{error}</p>)}
+        {errors.map((error, idx) => <p className="session-errors text-center" key={idx}>{error}</p>)}
         <Form.Group>
           <Form.Control
             type="text"
@@ -77,44 +80,6 @@ class SessionForm extends React.Component {
             <Link className="btn" to="/login">Have an account? <span style={{ color: '#3897f0' }}>Log In</span></Link>
           }
         </div>
-
-        {/* <h2>{formString}</h2>
-        {errors.map((error, idx) => <p key={idx}>{error}</p>)}
-        <form onSubmit={this.handleSubmit}>
-          <label>Username
-            <input
-              type="text"
-              onChange={this.handleInput('username')}
-              value={this.state.username}
-            />
-          </label>
-          {formType == 'signup' ?
-            <label>Email
-            <input
-                type="text"
-                onChange={this.handleInput('email')}
-                value={this.state.email}
-              />
-            </label>
-             :
-            ""
-          }
-          <label>Password
-            <input
-              type="password"
-              onChange={this.handleInput('password')}
-              value={this.state.password}
-            />
-          </label>
-          <button type="submit">{formString}</button>
-        </form> */}
-
-        {/* <div>
-          {formType == 'login' ?
-            <Link className="btn" to="/signup">Sign Up</Link> :
-            <Link className="btn" to="/login">Log In</Link>
-          }
-        </div> */}
 
       </div>
 

@@ -7,9 +7,6 @@ import Pluralize from 'pluralize';
 import { withRouter } from 'react-router-dom';
 
 const PostItemOptions = (props) => {
-  // const {
-  //   removePost
-  // } = props;
 
   const [modal, setModal] = useState(false);
 

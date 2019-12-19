@@ -87,32 +87,19 @@ class PostForm extends React.Component {
   }
 
   handleSubmit(e) {
-    //Sumbit handler
-    // e.preventDefault();
-    // const formData = new FormData();
-    // formData.append('image', this.state.file);
-    // axios.get('/api/upload', formData)
-    //   .then(response => { console.log(response) });
-
-
     e.preventDefault();
     const { caption, photos } = this.state;
     const formData = new FormData();
     formData.append('post[caption]', caption);
 
-    // let differences = this.state.photoUrls.filter(x => !this.props.post.photoUrls.includes(x));
-
     let postPhotos = Object.values(photos);
     for (let i = 0; i < postPhotos.length; i++) {
-      // formData.append('post[photos][]', photos[differences[i]]);
       formData.append('post[photos][]', postPhotos[i]);
     }
     // don't need to include user ID on UPDATE request
     if (!this.props.deletePost) {
       formData.append('post[author_id]', this.props.currentUserId);
     }
-
-    //const bench = Object.assign({}, this.state);
     this.props.submit(formData)
       .then(() => this.props.history.push('/'));
   }
@@ -137,7 +124,6 @@ class PostForm extends React.Component {
             type="file"
             accept='image/*'
             onChange={this.handleInput('photos')}
-            // name={Object.values(this.state.photos).toString()}
             multiple
           />
         </Form.Group>

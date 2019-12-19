@@ -39,10 +39,6 @@ export default ({ currentUser, logout }) => {
       {/* </Nav> */}
     </Navbar.Collapse>
   ) : (
-      // <div>
-      //   <Link className="btn" to="/signup">Sign Up</Link>
-      //   <Link className="btn" to="/login">Log In</Link>
-      // </div>
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav>
           <Nav.Link href="#signup">Sign Up</Nav.Link>
