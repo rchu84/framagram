@@ -10,7 +10,7 @@ class Api::PostLikesController < ApplicationController
     if @post_like.save
       render :show
     else
-      render json: @post.errors.full_messages, status: :unprocessable_entity
+      render json: @post_like.errors.full_messages, status: :unprocessable_entity
     end
   end
 

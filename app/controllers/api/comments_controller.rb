@@ -10,7 +10,7 @@ class Api::CommentsController < ApplicationController
     if @comment.save
       render :show
     else
-      render json: @post.errors.full_messages, status: :unprocessable_entity
+      render json: @comment.errors.full_messages, status: :unprocessable_entity
     end
   end
 

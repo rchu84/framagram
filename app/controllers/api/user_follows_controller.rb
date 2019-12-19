@@ -12,7 +12,10 @@ class Api::UserFollowsController < ApplicationController
   end
 
   def follow
-    @user = User.find(params[:user_id])
+    @user = User.find_by(id: params[:user_id])
+    if @user.nil?
+      render json: ['Invalid user to follow'], status: :unprocessable_entity and return
+    end
     if current_user.follow @user.id
       render json: { follower_id: current_user.id, following_id: @user.id }
     else
@@ -22,11 +25,14 @@ class Api::UserFollowsController < ApplicationController
   end
 
   def unfollow
-    @user = User.find(params[:user_id])
-    if current_user.unfollow @user.id
+    @user = User.find_by(id: params[:user_id])
+    if @user.nil?
+      render json: ['Invalid user to follow'], status: :unprocessable_entity and return
+    end
+    unless current_user.unfollow(@user.id).nil?
       render json: { follower_id: current_user.id, following_id: @user.id }
     else
-      render json: @follow.errors.full_messages, status: :unprocessable_entity
+      render json: ['Invalid user to unfollow'], status: :unprocessable_entity
     end
   end
 

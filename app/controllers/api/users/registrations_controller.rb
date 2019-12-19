@@ -13,8 +13,12 @@ class Api::Users::RegistrationsController < Devise::RegistrationsController
 
   # POST /resource
   def create
-    super do |resource|
-      resource.following_ids = User.all.ids.reject{|id| id == resource.id}.sample(10)
+    super do |user|
+      unless user.valid?
+        render json: user.errors.full_messages, status: :unprocessable_entity and return
+      else
+        user.following_ids = User.all.ids.reject{|id| id == resource.id}.sample(10)
+      end
     end
   end
 

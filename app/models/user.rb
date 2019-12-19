@@ -33,11 +33,12 @@ class User < ApplicationRecord
   end
 
   def follow(user_id)
-    following_relationship.create(following_id: user_id)
+    @follow = following_relationship.create(following_id: user_id)
   end
 
   def unfollow(user_id)
-    following_relationship.find_by(following_id: user_id).destroy
+    @unfollow = following_relationship.find_by(following_id: user_id)
+    @unfollow = @unfollow.destroy unless @unfollow.nil?
   end
 
   def feed_posts(limit = nil, max_created_at = nil)
