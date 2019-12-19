@@ -26,8 +26,6 @@ class Api::PostsController < ApplicationController
       post_images = { photos: [] }
       params[:post][:photos].each do |photo|
         image = MiniMagick::Image.new(photo.tempfile.path) do |b|
-          #json.photoUrls post.photos.map { |file| file.variant(combine_options: {resize: "640x640^", extent: "640x640", gravity: "center"}).processed.service_url }
-          #file.variant(resize: "640x640^").processed.service_url
           b.resize "640x640^"
           b.extent "640x640"
           b.gravity "center"

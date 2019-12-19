@@ -8,16 +8,6 @@ import Pluralize from 'pluralize';
 import { Link } from 'react-router-dom';
 
 const UserInfo = (props) => {
-  // const {
-  //   likeCount,
-  //   likers,
-  //   fetchPostLikes,
-  //   fetchPosts,
-  //   followUser,
-  //   unfollowUser,
-  //   followingIds,
-  //   currentUserId
-  // } = props;
   const {
     posts,
     user,
@@ -31,7 +21,6 @@ const UserInfo = (props) => {
 
   const [modal, setModal] = useState({
     isOpen: false,
-    //users: [],
     title: null
   });
 
