@@ -30,11 +30,11 @@ export const userByPostId = (entities, postId) => {
 
 export const likersByPostId = (entities, postId) => (
   Object.values(entities.postLikes)
-    .filter(postLike => postLike.post_id === postId)
+    .filter(postLike => postLike.post_id == postId)
     //.map(postLike => postLike.username)
 );
 
 export const commentsByPostId = (entities, postId) => (
   Object.values(entities.comments)
-    .filter(comment => comment.post_id === postId)
+    .filter(comment => comment.post_id == postId)
 );

@@ -79,8 +79,6 @@ class PostIndex extends React.Component{
         
 
         {this.props.posts.map(post => 
-        <Row className="justify-content-md-center" key={post.id}>
-          <Col xs={12} md={8}>
           <PostIndexItem post={post}
             fetchPost={this.props.fetchPost}
             removePost={this.props.removePost}
@@ -98,9 +96,7 @@ class PostIndex extends React.Component{
             fetchPostLikes={this.props.fetchPostLikes}
             createComment={this.props.createComment}
             removeComment={this.props.removeComment}
-          />
-          </Col>
-        </Row>)
+          />)
         }
 
         </InfiniteScroll>
