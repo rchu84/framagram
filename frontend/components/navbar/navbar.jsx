@@ -9,10 +9,10 @@ import FormControl from 'react-bootstrap/FormControl';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-// <FontAwesomeIcon icon={['far', 'heart']} />
-// <FontAwesomeIcon icon="ellipsis-h" />
+import { withRouter } from 'react-router-dom';
 
-export default ({ currentUser, logout }) => {
+// export default ({ currentUser, logout }) => {
+const NavbarComponent = ({ currentUser, logout, history }) => {
   const display = currentUser ? (
     // <div>
     //   <p>{currentUser.username}</p>
@@ -32,7 +32,7 @@ export default ({ currentUser, logout }) => {
             {currentUser.username}
           </NavDropdown.Item>
           <NavDropdown.Divider />
-          <NavDropdown.Item onClick={logout}>
+          <NavDropdown.Item onClick={() => logout().then(() => history.push('/login'))}>
             <FontAwesomeIcon icon="sign-out-alt" size="lg" />     Sign Out
           </NavDropdown.Item>
         </NavDropdown>
@@ -58,3 +58,5 @@ export default ({ currentUser, logout }) => {
     </Navbar>
   );
 };
+
+export default withRouter(NavbarComponent);
