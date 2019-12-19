@@ -10,23 +10,32 @@ The web app is a single-page application, it's also responsive and fully functio
 
 # Features
 
-### User Sign Up / Login
+![Signup](../master/lib/assets/Signup.png)
+![Feed](../master/lib/assets/Feed.png)
+![Like](../master/lib/assets/Like.png)
+![Comment](../master/lib/assets/Comment.png)
+![Create](../master/lib/assets/Create.png)
+![Profile](../master/lib/assets/Profile.png)
+
+---
+
+#### User Sign Up / Login
 
 Users can sign up or login to see their timeline/feed of all the latest photos shared by their friends. Users would also need to login to Like or Comment on photos and follow other users.
 
-### Photos Feed
+#### Photos Feed
 
 An infinite-scroll, reverse-chronological feed of all the photos shared by people you follow.
 
-### Create New Photo Post
+#### Create New Photo Post
 
 Add up to 10 photos to a single post, and it'll be displayed in a carousel format in photos feed!
 
-### Likes & Comment
+#### Likes & Comment
 
 Like and comment on photos from your friends!
 
-### Follow More People
+#### Follow More People
 
 Follow more users and instantly start seeing their latest photos in your feed!
 
