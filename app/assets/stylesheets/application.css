@@ -223,6 +223,19 @@ body {
   flex: 1 100%;
 }
 
+.posts-explore-wrapper {
+  width: 66.6667%;
+  margin: 0 auto;
+}
+
+.col-4 {
+  padding: 0;
+}
+
+.img-thumbnail {
+  border: none;
+}
+
 @media screen and (max-width: 768px) {
   /* .collapsing,
   .navbar-collapse.collapse {
@@ -237,6 +250,13 @@ body {
     border: 1px solid #eeefef;
     border-radius: 3px;
   } */
+  .row-explore {
+    margin: 0;
+  }
+
+  .col-4 {
+
+  }
 
   .session-form-wrapper {
     width: 100%;
@@ -245,8 +265,16 @@ body {
     border: none;
   }
 
+  .posts-explore-wrapper {
+    width: 100%;
+  }
+
   .posts-wrapper {
-    max-width: 100%;
+    width: 100%;
+  }
+
+  .img-thumbnail {
+    padding: 1px;
   }
 
   /* .form-wrapper {

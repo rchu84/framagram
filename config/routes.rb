@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     end
 
     
+    get 'posts/explore', to: 'posts#explore'
 
     resources :posts, only: [:show, :index, :update, :destroy, :create] do
       resources :post_likes, only: [:index]

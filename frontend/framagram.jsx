@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fab, faInstagram } from '@fortawesome/free-brands-svg-icons';
-import { faEllipsisH, faTimes, faHeart, faSignInAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEllipsisH, faTimes, faHeart, faSignInAlt, faSignOutAlt, faSearch, faPlus } from '@fortawesome/free-solid-svg-icons';
 import {
   faHeart as faHeartRegular, 
   faComment as faCommentRegular,
@@ -27,7 +27,9 @@ library.add(
   fab, 
   faEllipsisH, 
   faTimes, 
-  faHeart, 
+  faHeart,
+  faSearch,
+  faPlus,
   faHeartRegular, 
   faCommentRegular,
   faUserRegular,

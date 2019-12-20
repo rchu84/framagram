@@ -8,6 +8,7 @@ import EditPostFormContainer from './posts/edit_post_form_container';
 import PostDetailContainer from './posts/post_detail_container';
 import PostByUsernameContainer from './posts/post_by_username_container';
 import UserContainer from './users/user_container';
+import PostExploreContainer from './posts/post_explore_container';
 
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import { Route, Switch } from 'react-router-dom';
@@ -26,6 +27,7 @@ const App = () => (
         render={props => <div className="posts-wrapper"><PostDetailContainer {...props} /></div>} />
       <Route exact path="/:username" component={UserContainer} />
       <ProtectedRoute exact path="/" component={PostIndexContainer} />
+      <ProtectedRoute exact path="/posts/explore" component={PostExploreContainer} />
       <ProtectedRoute exact path="/posts/new" component={CreatePostFormContainer} />
       <ProtectedRoute exact path="/p/:postId/edit" component={EditPostFormContainer} />
     </Switch>

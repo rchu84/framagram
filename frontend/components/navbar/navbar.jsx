@@ -24,8 +24,11 @@ const NavbarComponent = ({ currentUser, logout, history }) => {
         <FormControl type="text" placeholder="Search" className="mr-sm-2" />
       </Form> */}
       {/* <Nav className="justify-content-end"> */}
+        <Nav.Link href="#/posts/explore">
+          <FontAwesomeIcon icon="search" size="lg" />
+        </Nav.Link>
         <Nav.Link href="#/posts/new">
-          <FontAwesomeIcon icon={['far', 'plus-square']} size="lg" />     New Post
+          <FontAwesomeIcon icon="plus" size="lg" />
         </Nav.Link>
         <NavDropdown title={<FontAwesomeIcon icon={['far', 'user']} size="lg" />}>
           <NavDropdown.Item href={`#/${currentUser.username}`}>

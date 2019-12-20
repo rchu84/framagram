@@ -34,6 +34,7 @@ gem 'bootstrap', '~> 4.4.1'
 gem 'faker'
 gem 'mini_magick'
 gem 'image_processing'
+gem 'redis-rails'
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

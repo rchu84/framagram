@@ -11,6 +11,19 @@ export const getPosts = filters => (
   })
 );
 
+export const getPostsExplore = filters => (
+  $.ajax({
+    method: 'GET',
+    url: 'api/posts/explore',
+    data: filters,
+    dataType: 'json',
+    beforeSend: function (xhr) {   //Include the bearer token in header
+      xhr.setRequestHeader("Authorization", 'Bearer ' + localStorage.token);
+    },
+    error: (err) => console.log(err)
+  })
+);
+
 export const getPost = postId => (
   $.ajax({
     method: 'GET',

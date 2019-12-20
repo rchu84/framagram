@@ -1,5 +1,6 @@
 import { 
   getPosts,
+  getPostsExplore,
   postPost,
   getPost,
   patchPost,
@@ -54,6 +55,10 @@ const removePostLikeFromState = postLike => ({
   type: REMOVE_POST_LIKE,
   postLike
 });
+
+export const fetchPostsExplore = filters => dispatch => (
+  getPostsExplore(filters).then(results => dispatch(receivePosts(results)))
+);
 
 
 export const fetchPosts = filters => dispatch => (

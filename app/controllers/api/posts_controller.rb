@@ -2,6 +2,7 @@ class Api::PostsController < ApplicationController
   skip_before_action :authenticate_user, only: [:show]
 
   LIMIT = 5
+  EXPLORE_LIMIT = 18
 
   def index
     followingIds = current_user.following.ids
@@ -13,7 +14,14 @@ class Api::PostsController < ApplicationController
       .order(created_at: :desc)
     
     @posts = @posts.where('posts.created_at < :max_created_at', max_created_at: params[:max_created_at]) if params[:max_created_at].present?
-
+  end
+  
+  def explore
+    @posts = Post.includes(:author, :post_likes, :likers, :comments, :commenters)
+      .limit(EXPLORE_LIMIT).order(Arel.sql('random()'))
+      .where.not(id: params[:post_ids], author_id: current_user.id)
+      .with_attached_photos
+    render :index
   end
 
   def show
