@@ -18,6 +18,7 @@ const mapDispatchToProps = dispatch => ({
   fetchPosts: filters => dispatch(fetchPosts(filters)),
   fetchPost: postId => dispatch(fetchPost(postId)),
   removePost: postId => dispatch(removePost(postId)),
+  updatePost: postId => dispatch(updatePost(postId)),
   createPostLike: formPostLike => dispatch(createPostLike(formPostLike)),
   removePostLike: postLikeId => dispatch(removePostLike(postLikeId)),
   fetchPostLikes: postId => dispatch(fetchPostLikes(postId)),

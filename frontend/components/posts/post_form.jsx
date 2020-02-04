@@ -14,41 +14,72 @@ class PostForm extends React.Component {
     //   photoUrls: []
     // };
     this.state = Object.assign({}, this.props.post, { photos: {} });
+    
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInput = this.handleInput.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.removePreview = this.removePreview.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
-    // for editing
+  fetchPhotosFromUrls(photoUrls) {
+    photoUrls.forEach(photoUrl => {
+      fetch(photoUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          let reader = new FileReader();
+          reader.onloadend = () => {
+            this.setState({
+              photos: { ...this.state.photos, [photoUrl]: blob }
+            });
+          };
+          reader.readAsDataURL(blob);
+        });
+    });
+  }
 
-    if (this.props.post !== prevProps.post) {
-      const { caption, photoUrls } = this.props.post;
-      photoUrls.forEach(photoUrl => {
-        fetch(photoUrl)
-          .then(response => response.blob())
-          .then(blob => {
-            let reader = new FileReader();
-            reader.onloadend = () => {
-              this.setState({
-                photos: { [photoUrl]: blob }
-              });
-            };
-            reader.readAsDataURL(blob);
-          });
-      });
+  // static getDerivedStateFromProps(props, state) {
+  //   if (props.post.id !== state.id) {
+  //     const { id, caption, photoUrls } = props.post;
 
-      this.setState({ caption, photoUrls });
+  //     let photos = {};
+  //     photoUrls.forEach(photoUrl => {
+  //       fetch(photoUrl)
+  //         .then(response => response.blob())
+  //         .then(blob => {
+  //           let reader = new FileReader();
+  //           reader.onloadend = () => {
+  //             photos[photoUrl] = blob;
+  //           };
+  //           reader.readAsDataURL(blob);
+  //         });
+  //     });
+
+  //     return { id, caption, photoUrls, photos };
+  //   }
+  //   else {
+  //     return state;
+  //   }
+  // }
+  componentDidMount() {
+  // componentDidUpdate(prevProps, prevState) {
+    const { photoUrls } = this.props.post;
+    const { photos } = this.state;
+    if (Object.keys(photos).length !== photoUrls.length) {
+      this.fetchPhotosFromUrls(photoUrls);
     }
   }
+
 
   removePreview(url) {
     return e => {
       let newPhotos = Object.assign({}, this.state.photos);
       let newPhotoUrls = this.state.photoUrls.filter(item => item !== url);
       delete newPhotos[url];
+      // console.log(newPhotos);
       document.getElementById("imgInput").value = "";
+      // this.setState({
+      //   photos: { ...this.state.photos, [photoUrl]: blob }
+      // });
       this.setState({ photos: newPhotos, photoUrls: newPhotoUrls });
     }
   }
@@ -63,9 +94,7 @@ class PostForm extends React.Component {
     if (type == 'photos') {
       return e => {
         e.preventDefault();
-
         let files = Array.from(e.target.files);
-
         files.forEach((file) => {
           let reader = new FileReader();
           reader.onloadend = () => {
@@ -92,6 +121,8 @@ class PostForm extends React.Component {
     const formData = new FormData();
     formData.append('post[caption]', caption);
 
+    // console.log(photos);
+
     let postPhotos = Object.values(photos);
     for (let i = 0; i < postPhotos.length; i++) {
       formData.append('post[photos][]', postPhotos[i]);
@@ -107,7 +138,7 @@ class PostForm extends React.Component {
   render() {
     return (
       <Form className="form-wrapper" onSubmit={this.handleSubmit}>
-
+        {this.props.errors.map((error, idx) => <p className="post-errors text-center" key={idx}>{error}</p>)}
         
         {this.state.photoUrls.map((imagePreviewUrl, idx) => 
           <div className="img-previews" key={idx}>

@@ -16,6 +16,10 @@ const PostItemOptions = (props) => {
     props.removePost(props.postId);
   };
 
+  const updatePost = () => {
+    props.history.push(`/p/${props.postId}/edit`)
+  };
+
   const goToPost = () => {
     props.history.push(`/p/${props.postId}`)
   };
@@ -30,9 +34,9 @@ const PostItemOptions = (props) => {
         <ModalBody>
           <Table borderless size="sm" className="post-options">
             <tbody>
-              {props.removePost ? 
+              {props.updatePost ? 
               <tr>
-                <td><Button variant="light" size="sm" onClick={deletePost} className="delete-post-btn">Delete Post</Button></td>
+                <td><Button variant="light" size="sm" onClick={updatePost} className="delete-post-btn">Edit Post</Button></td>
               </tr> : null}
               {!props.goToPost ?
                 <tr>

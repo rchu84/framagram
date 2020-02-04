@@ -4,8 +4,8 @@ import PostForm from './post_form';
 
 const mapStateToProps = (state, ownProps) => ({
   currentUserId: state.session.id,
-  post: { caption: "", photoUrls: [] }
-  // post: { caption: "", photos: [], photoUrls: [] }
+  post: { caption: "", photoUrls: [] },
+  errors: state.ui.errors.post
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

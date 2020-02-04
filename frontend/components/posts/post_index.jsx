@@ -82,6 +82,7 @@ class PostIndex extends React.Component{
           <PostIndexItem post={post}
             fetchPost={this.props.fetchPost}
             removePost={this.props.removePost}
+            updatePost={this.props.updatePost}
             postLikes={post.postLikes.map(postLike => this.props.postLikes[postLike.id])}
             comments={
               Object.values(this.props.comments)

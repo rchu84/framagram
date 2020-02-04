@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
@@ -8,8 +8,6 @@ import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Container from 'react-bootstrap/Container';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { withRouter } from 'react-router-dom';
 
 // export default ({ currentUser, logout }) => {
 const NavbarComponent = ({ currentUser, logout, history }) => {
@@ -44,8 +42,10 @@ const NavbarComponent = ({ currentUser, logout, history }) => {
   ) : (
       <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
         <Nav>
-          <Nav.Link href="#signup">Sign Up</Nav.Link>
-          <Nav.Link href="#login">Login</Nav.Link>
+          {/* <Nav.Link href="#signup">Sign Up</Nav.Link>
+          <Nav.Link href="#login">Login</Nav.Link> */}
+          <Link to="/signup" className="nav-link">Sign Up</Link>
+          <Link to="/login" className="nav-link">Login</Link>
         </Nav>
       </Navbar.Collapse>
 

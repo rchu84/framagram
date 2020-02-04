@@ -4,11 +4,12 @@ import { createPost, updatePost, removePost, fetchPost } from '../../actions/pos
 import PostForm from './post_form';
 
 const mapStateToProps = (state, ownProps) => {
-  const defaultPost = { caption: "", photoUrls: []};
+  const defaultPost = { caption: "", photoUrls: [] };
 
   return {
     currentUserId: state.session.id,
-    post: state.entities.posts[ownProps.match.params.postId] || defaultPost
+    post: state.entities.posts[ownProps.match.params.postId] || defaultPost,
+    errors: state.ui.errors.post
   };
 };
 
@@ -28,8 +29,8 @@ class EditPostForm extends React.Component {
 
   render() {
     // destructure the props so I can easily pass them down to PostForm
-    const { post, submit, currentUserId, deletePost } = this.props;
-    return <PostForm currentUserId={currentUserId} post={post} submit={submit} deletePost={deletePost} />;
+    const { post, submit, currentUserId, deletePost, errors } = this.props;
+    return <PostForm currentUserId={currentUserId} post={post} submit={submit} deletePost={deletePost} errors={errors} />;
   }
 }
 

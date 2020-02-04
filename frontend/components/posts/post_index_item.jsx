@@ -154,7 +154,7 @@ class PostIndexItem extends React.Component {
             <div className="post-head">
               <Link to={`/${username}`} className="username">{username}</Link>
 
-              <PostItemOptions removePost={author_id === currentUserId ? this.props.removePost : null}
+              <PostItemOptions updatePost={author_id === currentUserId ? this.props.updatePost : null}
                 goToPost={this.props.filters}
                 postId={id}
               />

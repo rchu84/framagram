@@ -19,6 +19,9 @@ export const RECEIVE_POST_LIKES = 'RECEIVE_POST_LIKES';
 export const RECEIVE_POST_LIKE = 'RECEIVE_POST_LIKE';
 export const REMOVE_POST_LIKE = 'REMOVE_POST_LIKE';
 
+export const RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
+export const CLEAR_POST_ERRORS = 'CLEAR_POST_ERRORS';
+
 
 const receivePosts = results => ({
   type: RECEIVE_POSTS,
@@ -56,6 +59,15 @@ const removePostLikeFromState = postLike => ({
   postLike
 });
 
+const receivePostErrors = errors => ({
+  type: RECEIVE_POST_ERRORS,
+  errors
+});
+
+const clearPostErrors = () => ({
+  type: CLEAR_POST_ERRORS
+});
+
 export const fetchPostsExplore = filters => dispatch => (
   getPostsExplore(filters).then(results => dispatch(receivePosts(results)))
 );
@@ -72,14 +84,16 @@ export const fetchPost = postId => dispatch => (
 export const createPost = formPost => dispatch => (
   postPost(formPost)
     .then(
-      results => dispatch(receivePost(results))
+      results => dispatch(receivePost(results)),
+      errors => dispatch(receivePostErrors(errors))
     )
 );
 
 export const updatePost = (formPost, postId) => dispatch => (
   patchPost(formPost, postId)
     .then(
-      results => dispatch(receivePost(results))
+      results => dispatch(receivePost(results)),
+      errors => dispatch(receivePostErrors(errors))
     )
 );
 
