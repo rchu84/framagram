@@ -1,7 +1,5 @@
 # Framagram
 
-[Framagram-Heroku](https://framagram.herokuapp.com "Framagram")
-
 Framagram, inspired by Instagram, is a social media web app that allows users to share images w/ their close friends and families that can be viewed, liked, and commented on by other users.
 
 The web app is a single-page application, it's also responsive and fully functional with the following features.
