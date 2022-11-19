@@ -29,7 +29,7 @@
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
     "timeago.js": "^4.0.1",
-    "webpack-cli": "^3.3.10",
+    "webpack-cli": "^3.3.12",
     "webpack": "^4.41.2"
   },
   "devDependencies": {
